@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let post of posts">
+      <tr *ngFor="let post of displayedPosts">
         <td class="border px-4 py-2">{{ post.id }}</td>
         <td class="border px-4 py-2">{{ post.title }}</td>
         <td class="border px-4 py-2">{{ post.body }}</td>
@@ -29,6 +29,11 @@
       </tr>
     </tbody>
   </table>
+  <div class="mt-4 flex justify-center">
+    <button (click)="loadMorePosts()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Ver mais Posts
+    </button>
+  </div>
   <div *ngIf="viewCommentsPost">
     <h2 class="text-lg font-semibold mb-2">Comments for Post ID: {{ viewCommentsPost.id }}</h2>
     <app-comments [postId]="viewCommentsPost.id" (cancelView)="closeViewComments()"></app-comments>

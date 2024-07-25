@@ -19,12 +19,14 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class PostsComponent implements OnInit {
   posts: any[] = [];
+  displayedPosts: any[] = [];
   selectedPost: any = null;
   viewCommentsPost: any = null;
   commentsVisible: { [key: number]: boolean } = {};
   newPost: any = {};
 
   showModal = false;
+  postsToShow: number = 5;
 
   constructor(private postsService: PostsService) {
   }
@@ -36,7 +38,13 @@ export class PostsComponent implements OnInit {
   loadPosts(): void {
     this.postsService.getPosts().subscribe((posts) => {
       this.posts = posts.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
+      this.displayedPosts = this.posts.slice(0, this.postsToShow);
     });
+  }
+
+  loadMorePosts(): void {
+    const nextIndex = this.displayedPosts.length + this.postsToShow;
+    this.displayedPosts = this.posts.slice(0, nextIndex);
   }
 
   editPost(post: any): void {
@@ -50,6 +58,7 @@ export class PostsComponent implements OnInit {
   deletePost(postId: number): void {
     this.postsService.deletePost(postId).subscribe(() => {
       this.posts = this.posts.filter((post) => post.id !== postId);
+      this.displayedPosts = this.posts.slice(0, this.displayedPosts.length);
     });
   }
 
@@ -61,13 +70,15 @@ export class PostsComponent implements OnInit {
         this.selectedPost = null;
         this.showModal = false;
         this.posts.sort((a, b) => b.id - a.id);
+        this.displayedPosts = this.posts.slice(0, this.displayedPosts.length);
       });
     } else {
-      this.postsService.createPost(this.newPost).subscribe((post) => {
-        this.posts.push(post);
+      this.postsService.createPost(this.newPost).subscribe((newPost) => {
+        this.posts.push(newPost);
         this.selectedPost = null;
         this.showModal = false;
         this.posts.sort((a, b) => b.id - a.id);
+        this.displayedPosts = this.posts.slice(0, this.displayedPosts.length);
       });
     }
   }
