@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommentsService } from '../../services/comments.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
 })
 export class CommentsComponent implements OnInit {
+  @Output()
+  cancelView: EventEmitter<void> = new EventEmitter<void>();
+
   @Input()
   postId!: number;
   comments: any[] = [];
@@ -59,5 +62,8 @@ export class CommentsComponent implements OnInit {
         (comment) => comment.id !== commentId
       );
     });
+  }
+    cancel(): void {
+    this.cancelView.emit();
   }
 }

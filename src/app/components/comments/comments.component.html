@@ -26,6 +26,7 @@
         <textarea [(ngModel)]="newComment.body" placeholder="Comment" class="border p-2 w-full mb-2"></textarea>
         <input [(ngModel)]="newComment.email" placeholder="Email" class="border p-2 w-full mb-2" type="email">
         <button (click)="addComment()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">Adicionar comentário</button>
+        <button (click)="cancel()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-4 rounded">Cancelar</button>
       </div>
     </div>
   </div>

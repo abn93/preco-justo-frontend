@@ -19,7 +19,7 @@
         <td class="border px-4 py-2">{{ post.body }}</td>
         <td class="py-2 px-4 border-b">
           <button (click)="toggleComments(post)" class="bg-green-500 text-white px-4 py-2 rounded">
-            {{ commentsVisible[post.id] ? 'Esconder Comentários' : 'Mostrar Comentários' }}
+            Mostrar Comentários
           </button>
         </td>
         <td class="border px-4 py-2">
@@ -31,7 +31,7 @@
   </table>
   <div *ngIf="viewCommentsPost">
     <h2 class="text-lg font-semibold mb-2">Comments for Post ID: {{ viewCommentsPost.id }}</h2>
-    <app-comments [postId]="viewCommentsPost.id"></app-comments>
+    <app-comments [postId]="viewCommentsPost.id" (cancelView)="closeViewComments()"></app-comments>
   </div>
 
   <app-post-form *ngIf="selectedPost" [post]="selectedPost" (save)="savePost($event)" (cancel)="cancelEdit()"></app-post-form>

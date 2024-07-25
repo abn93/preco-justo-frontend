@@ -21,7 +21,7 @@ export class PostsComponent implements OnInit {
   posts: any[] = [];
   selectedPost: any = null;
   viewCommentsPost: any = null;
-  commentsVisible: { [key: number]: boolean } = {}; // Objeto para controlar a visibilidade dos comentários
+  commentsVisible: { [key: number]: boolean } = {};
   newPost: any = { title: '', body: '' };
 
   showModal = false;
@@ -78,14 +78,14 @@ export class PostsComponent implements OnInit {
   }
 
   toggleComments(post: any): void {
-    this.viewCommentsPost = post;
+  this.commentsVisible[post.id] = !this.commentsVisible[post.id];
 
-    this.commentsVisible[post.id] = !this.commentsVisible[post.id];
-    if (
-      this.viewCommentsPost?.id === post.id &&
-      !this.commentsVisible[post.id]
-    ) {
-      this.viewCommentsPost = null;
-    }
+  if (this.commentsVisible[post.id]) {
+    this.viewCommentsPost = post;
+  }
+}
+
+  closeViewComments(): void {
+    this.viewCommentsPost = null;
   }
 }
