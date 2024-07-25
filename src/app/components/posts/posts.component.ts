@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {PostsService} from '../../services/posts.service';
-import {CommonModule} from '@angular/common';
-import {PostFormComponent} from '../post-form/post-form.component';
-import {CommentsComponent} from '../comments/comments.component';
-import {HttpClientModule} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../../services/posts.service';
+import { CommonModule } from '@angular/common';
+import { PostFormComponent } from '../post-form/post-form.component';
+import { CommentsComponent } from '../comments/comments.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -35,16 +35,16 @@ export class PostsComponent implements OnInit {
 
   loadPosts(): void {
     this.postsService.getPosts().subscribe((posts) => {
-      this.posts = posts;
+      this.posts = posts.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
     });
   }
 
   editPost(post: any): void {
-    this.selectedPost = {...post};
+    this.selectedPost = { ...post };
   }
 
   viewComment(post: any): void {
-    this.selectedPost = {...post};
+    this.selectedPost = { ...post };
   }
 
   deletePost(postId: number): void {
@@ -60,18 +60,20 @@ export class PostsComponent implements OnInit {
         this.posts[index] = updatedPost;
         this.selectedPost = null;
         this.showModal = false;
+        this.posts.sort((a, b) => b.id - a.id);
       });
     } else {
       this.postsService.createPost(this.newPost).subscribe((post) => {
         this.posts.push(post);
         this.selectedPost = null;
         this.showModal = false;
+        this.posts.sort((a, b) => b.id - a.id);
       });
     }
   }
 
   createPost(): void {
-    this.newPost = {title: '', body: ''};
+    this.newPost = { title: '', body: '' };
     this.showModal = true;
   }
 
