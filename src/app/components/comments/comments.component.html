@@ -1,32 +1,32 @@
 <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-  <div class="bg-white p-6 rounded shadow-md w-96 max-h-screen overflow-hidden">
-    <div class="bg-white p-6 rounded shadow-md w-96">
-      <h2 class="text-xl font-bold">Comentários</h2>
-      <div class="overflow-y-auto max-h-64">
-        <div *ngFor="let comment of comments" class="border p-4 mt-2">
-          <div *ngIf="!comment.isEditing">
-            <p>{{ comment.body }}</p>
-            <small class="text-gray-500">{{ comment.email }}</small>
-            <div class="mt-2">
-              <button (click)="editComment(comment)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Editar</button>
-              <button (click)="deleteComment(comment.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Deletar</button>
-            </div>
+  <div class="bg-white p-6 rounded shadow-md w-full max-w-md max-h-screen overflow-hidden">
+    <h2 class="text-xl font-bold">Comentários</h2>
+    <div class="overflow-y-auto max-h-64">
+      <div *ngFor="let comment of comments" class="border p-4 mt-2">
+        <div *ngIf="!comment.isEditing">
+          <p>{{ comment.body }}</p>
+          <small class="text-gray-500">{{ comment.email }}</small>
+          <div class="mt-2 flex space-x-2">
+            <button (click)="editComment(comment)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Editar</button>
+            <button (click)="deleteComment(comment.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Deletar</button>
           </div>
-          <div *ngIf="comment.isEditing">
-            <textarea [(ngModel)]="comment.body" class="border p-2 w-full"></textarea>
-            <div class="mt-2">
-              <button (click)="updateComment(comment)" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">Salvar</button>
-              <button (click)="comment.isEditing = false" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded">Cancelar</button>
-            </div>
+        </div>
+        <div *ngIf="comment.isEditing">
+          <textarea [(ngModel)]="comment.body" class="border p-2 w-full"></textarea>
+          <div class="mt-2 flex space-x-2">
+            <button (click)="updateComment(comment)" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">Salvar</button>
+            <button (click)="comment.isEditing = false" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded">Cancelar</button>
           </div>
         </div>
       </div>
-      <div class="mt-4">
-        <h3 class="text-lg font-bold">Adicionar Comentário</h3>
-        <textarea [(ngModel)]="newComment.body" placeholder="Comment" class="border p-2 w-full mb-2"></textarea>
-        <input [(ngModel)]="newComment.email" placeholder="Email" class="border p-2 w-full mb-2" type="email">
-        <button (click)="addComment()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">Adicionar comentário</button>
-        <button (click)="cancel()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-4 rounded">Cancelar</button>
+    </div>
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Adicionar Comentário</h3>
+      <textarea [(ngModel)]="newComment.body" placeholder="Comentário" class="border p-2 w-full mb-2"></textarea>
+      <input [(ngModel)]="newComment.email" placeholder="Email" class="border p-2 w-full mb-2" type="email">
+      <div class="mt-2 flex space-x-2">
+        <button (click)="addComment()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Adicionar comentário</button>
+        <button (click)="cancel()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
       </div>
     </div>
   </div>

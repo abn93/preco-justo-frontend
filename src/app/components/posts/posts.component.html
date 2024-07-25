@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <h1 class="text-2xl font-bold my-4">Posts</h1>
-  <button (click)="createPost()" class="bg-green-500 text-white px-4 py-2 rounded">
+  <button (click)="createPost()" class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded">
     Criar Post
   </button>
   <table class="min-w-full bg-white">
@@ -8,7 +8,7 @@
       <tr>
         <th class="py-2">ID</th>
         <th class="py-2">Título</th>
-        <th class="py-2">Corpo do post</th>
+        <th class="py-2">Corpo do Post</th>
         <th class="py-2">Ações</th>
       </tr>
     </thead>
@@ -18,13 +18,13 @@
         <td class="border px-4 py-2">{{ post.title }}</td>
         <td class="border px-4 py-2">{{ post.body }}</td>
         <td class="py-2 px-4 border-b">
-          <button (click)="toggleComments(post)" class="bg-green-500 text-white px-4 py-2 rounded">
+          <button (click)="toggleComments(post)" class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded">
             Mostrar Comentários
           </button>
         </td>
-        <td class="border px-4 py-2">
-          <button (click)="editPost(post)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
-          <button (click)="deletePost(post.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Deletar</button>
+        <td class="border px-4 py-2 space-y-2">
+          <button (click)="editPost(post)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-10 w-24">Editar</button>
+          <button (click)="deletePost(post.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded h-10 w-24">Deletar</button>
         </td>
       </tr>
     </tbody>

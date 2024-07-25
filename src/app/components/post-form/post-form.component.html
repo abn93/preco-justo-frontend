@@ -1,18 +1,18 @@
 <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
   <div class="bg-white p-6 rounded shadow-md w-96">
-    <h2 class="text-xl font-bold mb-4" >Criar post</h2>
+    <h2 class="text-xl font-bold mb-4" >Criar Post</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2">Título</label>
         <input [(ngModel)]="post.title" name="Título" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2">Corpo do post</label>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Corpo do Post</label>
         <textarea [(ngModel)]="post.body" name="Descrição" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
       </div>
       <div class="flex justify-end">
-        <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">Cancel</button>
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Salvar</button>
+        <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
       </div>
     </form>
   </div>
