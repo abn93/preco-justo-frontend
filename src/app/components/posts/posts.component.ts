@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { PostsService } from '../../services/posts.service';
-import { CommonModule } from '@angular/common';
-import { PostFormComponent } from '../post-form/post-form.component';
-import { CommentsComponent } from '../comments/comments.component';
-import { HttpClientModule } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {PostsService} from '../../services/posts.service';
+import {CommonModule} from '@angular/common';
+import {PostFormComponent} from '../post-form/post-form.component';
+import {CommentsComponent} from '../comments/comments.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -22,11 +22,12 @@ export class PostsComponent implements OnInit {
   selectedPost: any = null;
   viewCommentsPost: any = null;
   commentsVisible: { [key: number]: boolean } = {};
-  newPost: any = { title: '', body: '' };
+  newPost: any = {};
 
   showModal = false;
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService) {
+  }
 
   ngOnInit(): void {
     this.loadPosts();
@@ -39,11 +40,11 @@ export class PostsComponent implements OnInit {
   }
 
   editPost(post: any): void {
-    this.selectedPost = { ...post };
+    this.selectedPost = {...post};
   }
 
   viewComment(post: any): void {
-    this.selectedPost = { ...post };
+    this.selectedPost = {...post};
   }
 
   deletePost(postId: number): void {
@@ -52,15 +53,15 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  savePost(post?: any): void {
-    if (post) {
+  savePost(post: any): void {
+    if (post.id) {
       this.postsService.updatePost(post).subscribe((updatedPost) => {
         const index = this.posts.findIndex((p) => p.id === post.id);
         this.posts[index] = updatedPost;
         this.selectedPost = null;
+        this.showModal = false;
       });
     } else {
-      console.log(this.newPost);
       this.postsService.createPost(this.newPost).subscribe((post) => {
         this.posts.push(post);
         this.selectedPost = null;
@@ -70,20 +71,22 @@ export class PostsComponent implements OnInit {
   }
 
   createPost(): void {
+    this.newPost = {title: '', body: ''};
     this.showModal = true;
   }
 
   cancelEdit(): void {
     this.selectedPost = null;
+    this.showModal = false;
   }
 
   toggleComments(post: any): void {
-  this.commentsVisible[post.id] = !this.commentsVisible[post.id];
+    this.commentsVisible[post.id] = !this.commentsVisible[post.id];
 
-  if (this.commentsVisible[post.id]) {
-    this.viewCommentsPost = post;
+    if (this.commentsVisible[post.id]) {
+      this.viewCommentsPost = post;
+    }
   }
-}
 
   closeViewComments(): void {
     this.viewCommentsPost = null;

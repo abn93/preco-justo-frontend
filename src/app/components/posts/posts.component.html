@@ -35,5 +35,6 @@
   </div>
 
   <app-post-form *ngIf="selectedPost" [post]="selectedPost" (save)="savePost($event)" (cancel)="cancelEdit()"></app-post-form>
-  <!-- <app-post-modal *ngIf="showModal" (close)="closeModal()" (save)="savePost($event)" [post]="selectedPost"></app-post-modal> -->
+
+  <app-post-form *ngIf="showModal" [post]="newPost" (save)="savePost($event)" (cancel)="cancelEdit()"></app-post-form>
 </div>

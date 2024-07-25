@@ -1,14 +1,14 @@
 <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
   <div class="bg-white p-6 rounded shadow-md w-96">
-    <h2 class="text-xl font-bold mb-4">{{ post.id ? 'Edit Post' : 'Create Post' }}</h2>
+    <h2 class="text-xl font-bold mb-4" >Criar post</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2">Title</label>
-        <input [(ngModel)]="post.title" name="title" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Título</label>
+        <input [(ngModel)]="post.title" name="Título" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2">Body</label>
-        <textarea [(ngModel)]="post.body" name="body" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Corpo do post</label>
+        <textarea [(ngModel)]="post.body" name="Descrição" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
       </div>
       <div class="flex justify-end">
         <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">Cancel</button>
